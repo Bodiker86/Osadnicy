@@ -1,3 +1,8 @@
+<?php
+
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -7,18 +12,18 @@
     <title>Osadnicy - gra przeglądarkowa</title>
 </head>
 <body>
-    Tylko martwi ujrzeli koniec wojny - Platon <br/><br/>
-
-    <form action="zaloguj.php" method="post">
-   
-    Login: <br/> <input type="text" name="login" /> <br/>
-    Hasło: <br/> <input type="password" name="haslo" /> <br/>
-    <input type="submit" value="Zaloguj się" />
-
     
-    
-    </form>
+<?php
 
+    echo"<p>Witaj ".$_SESSION['user']."!";
+    echo"<p><b>Drewno</b>:".$_SESSION['drewno'];
+    echo "|<b>Kamień</b>:".$_SESSION['kamien'];
+    echo "|<b>Zboże</b>:".$_SESSION['zboze']."</p>";
+
+    echo"<p><b>E-mail</b>:".$_SESSION['email'];
+    echo"<p><b>Dni premium</b>:".$_SESSION['dnipremium']."</p>";
+    
+?>
 
 </body>
 </html>
