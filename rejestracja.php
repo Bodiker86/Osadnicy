@@ -2,6 +2,11 @@
 
 session_start();
 
+if (isset($_POST['email']))
+{
+
+    
+}
 
 
 ?>
@@ -13,6 +18,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Osadnicy - załóż darmowe konto!</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
    
@@ -31,7 +37,15 @@ session_start();
     <input type="checkbox" name="regulamin" /> Akceptuję regulamin
 
     </label>
+
+    <div class="g-recaptcha" data-sitekey="6LdcRvwaAAAAADM6w4rj5Iaw4KibacWHq4UzCP2j"></div>
+    
+    <br/>
+    
+    <input type="submit" value="Zarejestruj się" />
+
    </form>
 
+    
 </body>
 </html>
