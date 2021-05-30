@@ -2,7 +2,7 @@
 
 session_start();
 
-if (isset($_POST['email']))
+    if (isset($_POST['email']))
 {
     //Udana walidacja? Załóżmy, żetak!
     $wszystko_OK=true;
@@ -33,12 +33,28 @@ if (isset($_POST['email']))
         $_SESSION['e_email']="Podaj poprawny adres e-mail";
     }
 
-    if($wszystko_OK==true)
-    {
-        //Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy
-        echo "Udana walidacja!";
-        exit();
-    }
+        //Spawdż poprawność hasła
+        $haslo1 = $_POST['haslo1'];
+        $haslo2 = $_POST['haslo2'];
+
+        if ((strlen($haslo1)<8 || (strlen($haslo1)>20)))
+        {
+            $wszystko_OK=false;
+            $_SESSION['e_haslo']="Hasło musi posiadać od 8 do 20 znaków";
+        }
+
+        if($haslo1!=$haslo2)
+        {
+            $wszystko_OK=false;
+            $_SESSION['e_haslo']="Podane hasła nie są identyczne!";
+        }
+
+        if($wszystko_OK==true)
+        {
+            //Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy
+            echo "Udana walidacja!";
+            exit();
+        }
 
 }
 
@@ -84,7 +100,27 @@ if (isset($_POST['email']))
 
    E-mail: <br /> <input type="text" name="email" /> <br />
 
+   <?php
+
+    if (isset($_SESSION['e_email']))
+    {
+        echo '<div class="error">'.$_SESSION['e_email'].'</div>';
+        unset($_SESSION['e_email']);
+    }
+
+    ?>
+
    Twoje hasło: <br /> <input type="password" name="haslo1" /> <br />
+
+   <?php
+
+    if (isset($_SESSION['e_haslo']))
+    {
+        echo '<div class="error">'.$_SESSION['e_haslo'].'</div>';
+        unset($_SESSION['e_haslo']);
+    }
+
+    ?>
 
    Powtórz hasło: <br /> <input type="password" name="haslo2" /> <br />
 
