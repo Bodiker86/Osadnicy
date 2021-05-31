@@ -51,6 +51,13 @@ session_start();
 
         $haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
         
+        //Czy zaakceptowano regulamin?
+        if (!isset($_POST['regulamin']))
+        {
+            $wszystko_OK=false;
+            $_SESSION['e_regulamin']="Potwerdż akceptacje regulaminu!";
+        }
+
 
         if($wszystko_OK==true)
         {
@@ -132,6 +139,16 @@ session_start();
     <input type="checkbox" name="regulamin" /> Akceptuję regulamin
 
     </label>
+
+        <?php
+
+    if (isset($_SESSION['e_regulamin']))
+    {
+        echo '<div class="error">'.$_SESSION['e_regulamin'].'</div>';
+        unset($_SESSION['e_regulamin']);
+    }
+
+    ?>
 
     <div class="g-recaptcha" data-sitekey="6LdcRvwaAAAAADM6w4rj5Iaw4KibacWHq4UzCP2j"></div>
     
