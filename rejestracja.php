@@ -58,6 +58,20 @@ session_start();
             $_SESSION['e_regulamin']="Potwerdż akceptacje regulaminu!";
         }
 
+        //Bot or not? Oto jest pytanie! 
+        $sekret = "6LdcRvwaAAAAAMymkd82EFwPNZj3Dw50voLV-nCw";
+        
+        $sprawdz = file_get_contents('http://www.google.com/recaptcha/api/siteverify?secret='.$sekret.'&response'.$_POST['
+        g-recaptcha-response']);
+
+        $odpowiedz = json_decode($sprawdz);
+
+        if ($odpowiedz->success==false)
+        {
+            $wszystko_OK=false;
+            $_SESSION['e_bot']="Potwierdż, że nie jesteś botem!";
+        }
+
 
         if($wszystko_OK==true)
         {
