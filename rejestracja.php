@@ -49,6 +49,9 @@ session_start();
             $_SESSION['e_haslo']="Podane hasła nie są identyczne!";
         }
 
+        $haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
+        
+
         if($wszystko_OK==true)
         {
             //Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy
