@@ -61,8 +61,8 @@ session_start();
         //Bot or not? Oto jest pytanie! 
         $sekret = "6LdcRvwaAAAAAMymkd82EFwPNZj3Dw50voLV-nCw";
         
-        $sprawdz = file_get_contents('http://www.google.com/recaptcha/api/siteverify?secret='.$sekret.'&response'.$_POST['
-        g-recaptcha-response']);
+        $sprawdz = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$sekret.'&response='.$_POST[
+        'g-recaptcha-response']);
 
         $odpowiedz = json_decode($sprawdz);
 
@@ -154,7 +154,7 @@ session_start();
 
     </label>
 
-        <?php
+    <?php
 
     if (isset($_SESSION['e_regulamin']))
     {
@@ -165,7 +165,17 @@ session_start();
     ?>
 
     <div class="g-recaptcha" data-sitekey="6LdcRvwaAAAAADM6w4rj5Iaw4KibacWHq4UzCP2j"></div>
-    
+
+    <?php
+
+    if (isset($_SESSION['e_bot']))
+    {
+        echo '<div class="error">'.$_SESSION['e_bot'].'</div>';
+        unset($_SESSION['e_bot']);
+    }
+
+    ?>
+
     <br/>
     
     <input type="submit" value="Zarejestruj się" />
