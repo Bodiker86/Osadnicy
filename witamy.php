@@ -7,9 +7,11 @@ if (!isset($_SESSION['udanarejestracja']))
 
     header('Location: index.php');
     exit();
-
 }
-
+else 
+{
+   unset($_SESSION['udanarejestracja']); 
+}
 
 ?>
 
@@ -22,24 +24,10 @@ if (!isset($_SESSION['udanarejestracja']))
     <title>Osadnicy - gra przeglądarkowa</title>
 </head>
 <body>
-    Tylko martwi ujrzeli koniec wojny - Platon <br/><br/>
+    Dziękujemy za rejestrację w serwisie! Możesz juz zalogować się na swoje konto! <br/><br/>
 
-    <a href="rejestracja.php">Rejestracja - załóż darmowe konto!</a>
+    <a href="index.php">Zaliguj się na swoje konto!</a>
     <br /><br />
-
-    <form action="zaloguj.php" method="post">
-   
-    Login: <br/> <input type="text" name="login" /> <br/>
-    Hasło: <br/> <input type="password" name="haslo" /> <br/>
-    <input type="submit" value="Zaloguj się" />
-    
-    </form>
-<?php
-
-if(isset($_SESSION['blad'])) echo $_SESSION['blad'];
-
-
-?>
 
 </body>
 </html>
