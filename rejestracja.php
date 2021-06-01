@@ -106,6 +106,21 @@ session_start();
                     $_SESSION['e_nick']="Istnieje już gracz o takim nicku! Wybierz inny.";
                 }
 
+                if($wszystko_OK==true)
+                {
+                    //Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy
+                    if ($polaczenie->query("INSERT INTO uzytkownicy VALUES (NULL, '$nick', '$haslo_hash', '$email', 100, 100,
+                    100, 14)"))
+                    {
+                        $_SESSION['udanarejestracja']=true;
+                        header('Location: witamy.php');
+                    }
+                    else
+                    {
+                        throw new Exception ($polaczenie->error);
+                    }
+    
+                }
                 
 
                 $polaczenie->close();
@@ -116,14 +131,6 @@ session_start();
             echo '<span style="color:red;">Bład serwera! Przepraszamy za niedogodności i prosimy o rejestrację w innym 
             terminie!</span>';
             echo '<br/>Informacja developerska:'.$e;
-        }
-
-
-        if($wszystko_OK==true)
-        {
-            //Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy
-            echo "Udana walidacja!";
-            exit();
         }
 
 }
