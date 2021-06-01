@@ -85,7 +85,17 @@ session_start();
             else 
             {
                 //Czy email już istnieje?
-                $rezultat = $polaczenie->query("SELECT id FROM");
+                $rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE email='$email'");
+                if (!$rezultat) throw new Exception ($polaczenie->error);
+
+                $ile_takich_mail = $rezultat->num_rows;
+                if($ile_takich_mail>0)
+                {
+                    $wszystko_OK=false;
+                    $_SESSION['e_email']="Istnieje już konto prypisane do tego adresu email!";
+                }
+
+
 
                 $polaczenie->close();
             }
