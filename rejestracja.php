@@ -94,13 +94,24 @@ session_start();
                     $wszystko_OK=false;
                     $_SESSION['e_email']="Istnieje już konto prypisane do tego adresu email!";
                 }
+                
+                //Czy nick jest już zarezerwowany?
+                $rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE user='$nick'");
+                if (!$rezultat) throw new Exception ($polaczenie->error);
 
+                $ile_takich_nickow = $rezultat->num_rows;
+                if($ile_takich_nickow>0)
+                {
+                    $wszystko_OK=false;
+                    $_SESSION['e_nick']="Istnieje już gracz o takim nicku! Wybierz inny.";
+                }
 
+                
 
                 $polaczenie->close();
             }
         }
-        catch(Exception $e)
+        catch (Exception $e)
         {
             echo '<span style="color:red;">Bład serwera! Przepraszamy za niedogodności i prosimy o rejestrację w innym 
             terminie!</span>';
