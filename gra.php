@@ -31,6 +31,14 @@ if (!isset($_SESSION['zalogowany']))
     echo"<p><b>E-mail</b>: ".$_SESSION['email'];
     echo"<p><b>Dni premium</b>: ".$_SESSION['dnipremium']."</p>";
     
+    echo time()."<br>";  
+    echo date ('Y-m-d H:i:s')."<br>";
+    
+    $dataczas = new DateTime();
+
+    echo $dataczas
+
+
 ?>
 
 </body>
