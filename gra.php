@@ -31,16 +31,19 @@ if (!isset($_SESSION['zalogowany']))
     echo"<p><b>E-mail</b>: ".$_SESSION['email'];
     echo"<p><b>Data wygaśnięcia premium</b>: ".$_SESSION['dnipremium']."</p>";
     
-    $dataczas = new DateTime('2017-01-01 09:30:15');
+    $dataczas = new DateTime('2150-05-01 09:33:59');
 
-    echo "Data i czas serwera: ".$dataczas->format('Y-m-d H:i:s')."<br>"
+    echo "Data i czas serwera: ".$dataczas->format('Y-m-d H:i:s')."<br>";
 
-    $koniec = DateTime::createFormat('Y-m-d H:i:s', $_SESSION['dnipremium']);
+    $koniec = DateTime::createFromFormat ('Y-m-d H:i:s', $_SESSION['dnipremium']);
 
     $roznica = $dataczas->diff($koniec);
 
     if($dataczas<$koniec)
     echo "Pozostało premium: ".$roznica->format('%y lat, %m mies, %d dni, %h godz, %i min, %s sek');
+    else
+    echo "Premium nieaktywne od: ".$roznica->format('%y lat, %m mies, %d dni, %h godz, %i min, %s sek');
+    
     
     
 
